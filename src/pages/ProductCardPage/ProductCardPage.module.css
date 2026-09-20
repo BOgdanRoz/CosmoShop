@@ -1,0 +1,62 @@
+.page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 3rem;
+}
+
+.card {
+    display: grid;
+    gap: 1.25rem;
+    padding: 1.5rem;
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    background: rgba(14, 17, 22, 0.9);
+    box-shadow: 0 18px 30px var(--shadow);
+}
+
+.image {
+    height: 260px;
+    border-radius: 18px;
+    background:
+        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.35), transparent 25%),
+        linear-gradient(135deg, #1a2028 0%, #0d1116 50%, #121a23 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.title {
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 700;
+    color: var(--text);
+}
+
+.info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem 1.2rem;
+    color: var(--muted);
+    font-size: 0.98rem;
+}
+
+.price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--soft);
+}
+
+.button {
+    width: fit-content;
+    padding: 0.9rem 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 999px;
+    background: #f4f7fb;
+    color: #090d12;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 22px rgba(244, 247, 251, 0.18);
+}
