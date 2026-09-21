@@ -1,62 +1,84 @@
 .page {
-    max-width: 900px;
     margin: 0 auto;
-    padding: 2.5rem 1.5rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .card {
-    display: grid;
-    gap: 1.25rem;
+    display: flex;
+    width: 1200px;
+    height: auto;
     padding: 1.5rem;
+    gap: 20px;
     border: 1px solid var(--line);
     border-radius: 24px;
-    background: rgba(14, 17, 22, 0.9);
+    background: rgba(14, 17, 22, 0.329);
     box-shadow: 0 18px 30px var(--shadow);
 }
 
 .image {
-    height: 260px;
+    flex-shrink: 0;
+    height: 560px;
+    width: 660px;
     border-radius: 18px;
-    background:
-        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.35), transparent 25%),
-        linear-gradient(135deg, #1a2028 0%, #0d1116 50%, #121a23 100%);
     border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .title {
-    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    width: 100%;
+    font-size: 50px;
     font-weight: 700;
     color: var(--text);
 }
 
 .info {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.8rem 1.2rem;
+    flex-direction: column;
+    width: fit-content;
+    gap: 5px;
     color: var(--muted);
-    font-size: 0.98rem;
+    font-size: 1.5rem;
 }
 
 .price {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 700;
     color: var(--soft);
 }
 
 .button {
-    width: fit-content;
+    width: 160px;
+    height: 60px;
     padding: 0.9rem 1.5rem;
     border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 999px;
     background: #f4f7fb;
+    border-radius: 5px;
     color: #090d12;
     font-weight: 700;
     letter-spacing: 0.04em;
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease
 }
 
 .button:hover {
     transform: translateY(-1px);
-    box-shadow: 0 12px 22px rgba(244, 247, 251, 0.18);
+}
+.meta {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+    min-width: 0;
+    gap: 10px;
+}
+.buttonArea {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+.desc {
+    min-width: 0;
+    font-size: 20px;
+    flex-shrink: 1;
 }
