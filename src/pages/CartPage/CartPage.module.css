@@ -1,3 +1,34 @@
+.emptyPage {
+    display: flex;
+    min-height: calc(100vh - 86px);
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.5rem;
+}
+
+.emptyModal {
+    display: flex;
+    width: min(100%, 420px);
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 2.5rem 2rem;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--panel);
+    text-align: center;
+}
+.emptyTitle {
+    font-size: 1.35rem;
+    font-weight: 600;
+}
+
+.emptyText {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
 .page {
     max-width: 1180px;
     margin: 0 auto;

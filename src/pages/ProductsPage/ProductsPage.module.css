@@ -12,6 +12,6 @@
 }
 
 .grid > * {
-    flex: 1 1 220px;
-    max-width: 260px;
+    flex: 1 1 198px;
+    max-width: 234px;
 }

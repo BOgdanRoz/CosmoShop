@@ -21,7 +21,7 @@ function ProductCardPage({ addToCart }: ProductCardPageProps) {
                     <div className={styles.dataArea}>
                         <div>
                             <h2 className={styles.title}>{product.name}</h2>
-                            <p className={styles.price}>Price: {product.price.toLocaleString("en-Us")}</p>
+                            <p className={styles.price}>Price: ${product.price.toLocaleString("en-Us")}</p>
                         </div>
                         <div className={styles.desc}>
                             {product.desc}
