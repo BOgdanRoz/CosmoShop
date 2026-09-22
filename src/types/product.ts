@@ -63,4 +63,6 @@ export interface ProductCardPageProps {
 
 export interface CartPageProps {
     cart: CartItem[]
+    increaseQuantity: (productId: number) => void
+    decreaseQuantity: (productId: number) => void
 }

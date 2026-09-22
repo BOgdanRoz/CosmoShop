@@ -21,7 +21,7 @@ function ProductCardPage({ addToCart }: ProductCardPageProps) {
                     <div className={styles.dataArea}>
                         <div>
                             <h2 className={styles.title}>{product.name}</h2>
-                            <p className={styles.price}>Price: {product.price}</p>
+                            <p className={styles.price}>Price: {product.price.toLocaleString("en-Us")}</p>
                         </div>
                         <div className={styles.desc}>
                             {product.desc}
@@ -34,7 +34,11 @@ function ProductCardPage({ addToCart }: ProductCardPageProps) {
                     <div className={styles.buttonArea}>
                         <button
                             className={styles.button}
-                            onClick={() => addToCart(product)}
+                            onClick={() => {
+                                addToCart(product)
+                                alert(`${product.name} added to cart!`)
+                            }}
+                            
                         >
                             Add to cart</button>
                     </div>

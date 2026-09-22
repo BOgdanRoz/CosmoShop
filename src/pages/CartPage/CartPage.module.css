@@ -1,0 +1,213 @@
+.page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+}
+
+.heading {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    margin-bottom: 1.75rem;
+}
+
+.title {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.subtitle {
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+.layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+}
+
+.items {
+    display: flex;
+    flex: 1 1 0;
+    flex-direction: column;
+    gap: 0.75rem;
+    min-width: 0;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--panel);
+}
+
+.image {
+    flex: 0 0 92px;
+    width: 92px;
+    height: 92px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #14181d;
+}
+
+.details {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    align-self: stretch;
+    justify-content: center;
+    gap: 0.6rem;
+    min-width: 0;
+}
+
+.name {
+    overflow: hidden;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.35;
+    text-overflow: ellipsis;
+}
+
+.price {
+    color: var(--soft);
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.quantity {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+}
+
+.quantityLabel {
+    color: var(--muted);
+    font-size: 0.72rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+}
+
+.quantityControls {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.quantityButton {
+    width: 2.2rem;
+    height: 2.2rem;
+    border: 0;
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.quantityButton:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.quantityValue {
+    display: flex;
+    width: 2.2rem;
+    height: 2.2rem;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+    color: var(--text);
+    font-size: 0.9rem;
+}
+
+.summary {
+    display: flex;
+    flex: 0 1 320px;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.25rem;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--panel);
+}
+
+.summaryTitle {
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
+.summaryRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.summaryDivider {
+    height: 1px;
+    background: var(--line);
+}
+
+.totalRow {
+    color: var(--text);
+    font-size: 1.05rem;
+}
+
+.totalRow strong {
+    color: var(--soft);
+    font-size: 1.25rem;
+}
+
+.checkoutButton {
+    width: 100%;
+    min-height: 2.75rem;
+    margin-top: 0.35rem;
+    border: 1px solid var(--soft);
+    border-radius: 8px;
+    background: var(--soft);
+    color: #080a0d;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.checkoutButton:hover {
+    background: transparent;
+    color: var(--soft);
+}
+
+@media (max-width: 720px) {
+    .page {
+        padding: 1.75rem 1rem 3rem;
+    }
+
+    .layout {
+        flex-direction: column;
+    }
+
+    .items,
+    .summary {
+        width: 100%;
+        flex-basis: auto;
+    }
+
+    .item {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .quantity {
+        margin-left: calc(92px + 1rem);
+        align-items: flex-start;
+    }
+}

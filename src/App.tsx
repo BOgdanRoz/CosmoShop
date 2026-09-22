@@ -35,13 +35,47 @@ function App() {
         }
     }
 
+    const increaseQuantity = (productId: number) => {
+        const smartCart = cart.map(item => (
+            item.product.id === productId
+            ? {
+                ...item,
+                quantity: item.quantity + 1
+            }
+            : item
+        ))
+
+        setCart(smartCart)
+    }
+
+    const decreaseQuantity = (productId: number) => {
+        const smartCart = cart
+            .filter(item => !(item.product.id === productId && item.quantity === 1))
+            .map(item => 
+                item.product.id === productId
+                ? {
+                    ...item,
+                    quantity: item.quantity - 1
+                }
+                : item
+            )
+
+        setCart(smartCart)
+    }
+
     return (
         <BrowserRouter>
             <Header />
 
             <Routes>
                 <Route path="/" element={<ProductsPage />} />
-                <Route path="/cart" element={<CartPage cart={cart} />} />
+                <Route
+                    path="/cart"
+                    element={<CartPage
+                        cart={cart}
+                        increaseQuantity={increaseQuantity}
+                        decreaseQuantity={decreaseQuantity}
+                />} />
                 <Route path="/products/:id" element={<ProductCardPage addToCart={addToCart} />}/>
             </Routes>
         </BrowserRouter>
