@@ -3,12 +3,23 @@ import Header from "./components/Header/Header"
 import ProductsPage from "./pages/ProductsPage/ProductsPage"
 import ProductCardPage from "./pages/ProductCardPage/ProductCardPage"
 import type { CartItem, Product } from "./types/product"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import CartPage from "./pages/CartPage/CartPage"
 
 function App() {
 
-    const [cart, setCart] = useState<CartItem[]>([])
+    const [cart, setCart] = useState<CartItem[]>(() => {
+        const savedCart = localStorage.getItem("cart")
+        if (savedCart) {
+             return JSON.parse(savedCart)
+        } else {
+            return []
+        }
+    })
+
+    useEffect(() => {
+        return localStorage.setItem("cart", JSON.stringify(cart))
+    }, [cart])
 
     const addToCart = (product: Product) => {
 
@@ -24,6 +35,7 @@ function App() {
                     : item
             ))
             setCart(smartCart)
+            
         } else {
             setCart([
                 ...cart,
@@ -64,6 +76,7 @@ function App() {
     }
 
     return (
+        <>
         <BrowserRouter>
             <Header />
 
@@ -79,6 +92,7 @@ function App() {
                 <Route path="/products/:id" element={<ProductCardPage addToCart={addToCart} />}/>
             </Routes>
         </BrowserRouter>
+        </>
     )
 }
 

@@ -82,3 +82,100 @@
     font-size: 20px;
     flex-shrink: 1;
 }
+.notificationn {
+    position: fixed;
+    top: 24px;
+    left: 50%;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: min(90vw, 420px);
+    min-height: 72px;
+    padding: 1.1rem 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.38);
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #05070a;
+    background-image:
+        radial-gradient(circle at 82% 38%, rgba(255, 255, 255, 0.42) 0 5%, rgba(190, 198, 208, 0.22) 6%, rgba(75, 84, 94, 0.2) 11%, transparent 12%),
+        radial-gradient(circle at 80% 35%, rgba(255, 255, 255, 0.12), transparent 18%),
+        radial-gradient(circle at 9% 22%, rgba(255, 255, 255, 0.95) 1px, transparent 1.6px),
+        radial-gradient(circle at 23% 76%, rgba(255, 255, 255, 0.8) 1.5px, transparent 2px),
+        radial-gradient(circle at 39% 31%, rgba(255, 255, 255, 0.65) 1px, transparent 1.5px),
+        radial-gradient(circle at 57% 80%, rgba(255, 255, 255, 0.9) 1px, transparent 1.6px),
+        radial-gradient(circle at 68% 16%, rgba(255, 255, 255, 0.7) 1.5px, transparent 2px),
+        radial-gradient(circle at 91% 68%, rgba(255, 255, 255, 0.85) 1px, transparent 1.5px),
+        radial-gradient(circle at 77% 91%, rgba(255, 255, 255, 0.55) 1px, transparent 1.4px),
+        radial-gradient(circle at 48% 56%, rgba(255, 255, 255, 0.5) 1px, transparent 1.4px);
+    background-size: 100% 100%;
+    color: #ffffff;
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.24);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-align: center;
+    animation: notificationLifecycle 3s ease-in-out forwards;
+}
+
+.notificationn::before {
+    content: "";
+    position: absolute;
+    right: -30px;
+    top: 50%;
+    width: 156px;
+    height: 58px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 50%;
+    transform: translateY(-50%) rotate(-18deg);
+    box-shadow:
+        0 0 0 8px rgba(255, 255, 255, 0.025),
+        0 0 0 18px rgba(255, 255, 255, 0.015);
+    pointer-events: none;
+}
+
+.notificationn::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.9);
+    transform: scaleX(1);
+    transform-origin: left;
+    animation: notificationProgress 3s linear forwards;
+    pointer-events: none;
+}
+
+@keyframes notificationLifecycle {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -24px);
+    }
+
+    12% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+
+    78% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -24px);
+    }
+}
+
+@keyframes notificationProgress {
+    from {
+        transform: scaleX(1);
+    }
+
+    to {
+        transform: scaleX(0);
+    }
+}

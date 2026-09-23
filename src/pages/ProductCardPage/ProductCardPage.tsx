@@ -2,8 +2,12 @@ import { useParams } from "react-router-dom"
 import { products } from "../../types/product"
 import styles from "./ProductCardPage.module.css"
 import type { ProductCardPageProps } from "../../types/product"
+import { useState } from "react"
 
 function ProductCardPage({ addToCart }: ProductCardPageProps) {
+
+    const [notification, setNotification] = useState("")
+
 
     const { id } = useParams()
 
@@ -14,6 +18,12 @@ function ProductCardPage({ addToCart }: ProductCardPageProps) {
     }
 
     return (
+        <>
+        {notification && (
+            <div className={styles.notificationn}>
+                {notification}
+            </div>
+        )}
         <main className={styles.page}>
             <div className={styles.card}>
                 <div className={styles.image}></div>
@@ -36,7 +46,11 @@ function ProductCardPage({ addToCart }: ProductCardPageProps) {
                             className={styles.button}
                             onClick={() => {
                                 addToCart(product)
-                                alert(`${product.name} added to cart!`)
+                                setNotification(`${product.name} added to cart!`)
+
+                                setTimeout(() => {
+                                    setNotification("")
+                                }, 3000)
                             }}
                             
                         >
@@ -46,6 +60,7 @@ function ProductCardPage({ addToCart }: ProductCardPageProps) {
                 
             </div>
         </main>
+        </>
     )
 }
 
