@@ -59,6 +59,62 @@ export const products: Product[] = [
         desc: "A compact high-powered torch designed for spacecraft and exploration.\nProvides bright illumination in dark environments and damaged stations.\nFeatures a durable body and extended battery life.",
         id: 4
     },
+    {
+        name: "Cosmo Torch",
+        price: 150,
+        category: "Equipment",
+        rating: 9,
+        image: "",
+        desc: "A compact high-powered torch designed for spacecraft and exploration.\nProvides bright illumination in dark environments and damaged stations.\nFeatures a durable body and extended battery life.",
+        id: 4
+    },
+    {
+        name: "Cosmo Torch",
+        price: 150,
+        category: "Equipment",
+        rating: 9,
+        image: "",
+        desc: "A compact high-powered torch designed for spacecraft and exploration.\nProvides bright illumination in dark environments and damaged stations.\nFeatures a durable body and extended battery life.",
+        id: 4
+    },
+    {
+        name: "Cosmo Torch",
+        price: 150,
+        category: "Equipment",
+        rating: 9,
+        image: "",
+        desc: "A compact high-powered torch designed for spacecraft and exploration.\nProvides bright illumination in dark environments and damaged stations.\nFeatures a durable body and extended battery life.",
+        id: 4
+    },
+    {
+        name: "Cosmo Torch",
+        price: 150,
+        category: "Equipment",
+        rating: 9,
+        image: "",
+        desc: "A compact high-powered torch designed for spacecraft and exploration.\nProvides bright illumination in dark environments and damaged stations.\nFeatures a durable body and extended battery life.",
+        id: 4
+    },
+    {
+        name: "Cosmo Torch",
+        price: 150,
+        category: "Equipment",
+        rating: 9,
+        image: "",
+        desc: "A compact high-powered torch designed for spacecraft and exploration.\nProvides bright illumination in dark environments and damaged stations.\nFeatures a durable body and extended battery life.",
+        id: 4
+    },
+    {
+        name: "Cosmo Torch",
+        price: 150,
+        category: "Equipment",
+        rating: 9,
+        image: "",
+        desc: "A compact high-powered torch designed for spacecraft and exploration.\nProvides bright illumination in dark environments and damaged stations.\nFeatures a durable body and extended battery life.",
+        id: 4
+    },
+    
+    
 ]
 
 export interface CartItem {

@@ -55,11 +55,6 @@ body::before {
     z-index: 1;
 }
 
-img {
-    max-width: 100%;
-    display: block;
-}
-
 a {
     color: inherit;
     text-decoration: none;

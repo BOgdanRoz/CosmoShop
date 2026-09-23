@@ -5,6 +5,9 @@ import styles from "./ProductsPage.module.css"
 function ProductsPage() {
     return (
         <main className={styles.page}>
+            <div className={styles.imageBanner}>
+                <img src="./public/Banner.png" alt="" className={styles.img} />
+            </div>
             <div className={styles.grid}>
                 {products.map(product => (
                     <ProductCard
