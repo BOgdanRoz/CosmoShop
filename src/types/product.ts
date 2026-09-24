@@ -481,3 +481,8 @@ export interface CartPageProps {
     increaseQuantity: (productId: number) => void
     decreaseQuantity: (productId: number) => void
 }
+
+export interface FiltersProps {
+    products: Product[]
+    onFilterChange: (products: Product[]) => void
+}

@@ -1,0 +1,26 @@
+.priceSlider {
+    position: relative;
+    height: 30px;
+    width: 100%;
+}
+
+.range {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    margin: 0;
+    pointer-events: none;
+    appearance: none;
+    background: transparent;
+}
+
+.range::-webkit-slider-thumb {
+    appearance: none;
+    pointer-events: auto;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #64748b;
+    cursor: pointer;
+}

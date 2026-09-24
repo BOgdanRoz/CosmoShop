@@ -1,9 +1,26 @@
 .page {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 2rem 1.5rem 3rem;
+}
+
+.contentLayout {
     display: flex;
-    justify-content: center;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+.filters {
+    display: flex;
+    flex: 0 0 210px;
+    min-height: 326px;
+    flex-direction: column;
+}
+
+.catalog {
+    display: flex;
+    min-width: 0;
+    flex: 1 1 auto;
     flex-direction: column;
     align-items: center;
     gap: 20px;
@@ -11,26 +28,29 @@
 
 .grid {
     display: flex;
+    width: 100%;
     flex-wrap: wrap;
     gap: 1.25rem;
     align-items: stretch;
+    justify-content: center;
 }
 
 .grid > * {
-    flex: 1 1 214px;
-    max-width: 214px;
+    flex: 0 0 calc((100% - 5rem) / 5);
+    max-width: none;
 }
 
 .imageBanner {
-    width: 1100px;
-    height: 326px;
+    width: 100%;
+    height: auto;
 }
 .img {
-    width: 1100px;
-    height: 326px;
+    display: block;
+    width: 100%;
+    height: auto;
 }
 
-.page > div:last-child {
+.pagination {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -71,6 +91,32 @@
         padding: 1.25rem 1rem 2.5rem;
     }
 
+    @media (max-width: 1180px) and (min-width: 721px) {
+        .grid > * {
+            flex-basis: calc((100% - 3.75rem) / 4);
+        }
+    }
+
+    @media (max-width: 940px) and (min-width: 721px) {
+        .grid > * {
+            flex-basis: calc((100% - 2.5rem) / 3);
+        }
+    }
+
+    .contentLayout {
+        flex-direction: column;
+    }
+
+    .filters {
+        width: 100%;
+        min-height: 0;
+        flex-basis: auto;
+    }
+
+    .catalog {
+        width: 100%;
+    }
+
     .imageBanner,
     .img {
         width: 100%;
@@ -83,6 +129,12 @@
     }
 
     .grid > * {
-        flex-basis: min(100%, 214px);
+        flex-basis: calc((100% - 1.25rem) / 2);
+    }
+}
+
+@media (max-width: 420px) {
+    .grid > * {
+        flex-basis: 100%;
     }
 }
