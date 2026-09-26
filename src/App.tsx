@@ -43,7 +43,7 @@ function App() {
         if (modalType === "register") {
             const exsitingUser = users.some(user => user.userName === userName)
             if (exsitingUser) {
-                 return console.log()
+                 return console.log("User, is already exist")
             }
 
             const newUser = {
@@ -55,6 +55,16 @@ function App() {
                 ...users,
                 newUser
             ])
+        } else if (modalType === "login") {
+            const exsitingUser = users.find(user => user.userName === userName && user.password === password)
+            if (!exsitingUser) {
+                return console.log("User, not found")
+            }
+
+            setUserName(userName)
+            localStorage.setItem("userName", userName)
+
+            setModalType(null)
         }
     }
 
