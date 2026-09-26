@@ -7,6 +7,8 @@ import { useState, useEffect } from "react"
 import CartPage from "./pages/CartPage/CartPage"
 import AuthModal from "./components/AuthModal/AuthModal"
 import type { User } from "./types/auth"
+import type { Order } from "./types/order"
+import MyOrdersPage from "./pages/MyOrdersPage/MyOrdersPage"
 
 function App() {
 
@@ -150,6 +152,25 @@ function App() {
     }
 
     const handleCheckout = () => {
+        if (userName === null || cart.length === 0) return
+
+        const newOrder: Order = {
+            id: Date.now(),
+            createdAt: new Date().toISOString(),
+            items: [...cart],
+            total: cart.reduce(
+            (sum, item) => sum + item.product.price * item.quantity,
+            0
+            )
+        }
+
+        const savedOrders = localStorage.getItem(`orders_${userName}`)
+        const orders: Order[] = savedOrders ? JSON.parse(savedOrders) : []
+
+        localStorage.setItem(
+            `orders_${userName}`,
+            JSON.stringify([...orders, newOrder])
+        )
         setCart([])
     }
 
@@ -188,6 +209,7 @@ function App() {
                         onCheckout={handleCheckout}
                 />} />
                 <Route path="/products/:id" element={<ProductCardPage addToCart={addToCart} />}/>
+                <Route path="/my-orders" element={<MyOrdersPage userName={userName}/>}/>
             </Routes>
         </BrowserRouter>
         </>
