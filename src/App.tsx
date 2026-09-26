@@ -5,6 +5,8 @@ import ProductCardPage from "./pages/ProductCardPage/ProductCardPage"
 import type { CartItem, Product } from "./types/product"
 import { useState, useEffect } from "react"
 import CartPage from "./pages/CartPage/CartPage"
+import AuthModal from "./components/AuthModal/AuthModal"
+import type { User } from "./types/auth"
 
 function App() {
 
@@ -14,9 +16,18 @@ function App() {
         return localStorage.getItem("userName")
     })
 
+    const [users, setUsers] = useState<User[]>(() => {
+        const usersJSON = localStorage.getItem("users")
+
+         if (usersJSON) {
+            return JSON.parse(usersJSON)
+         } else {
+            return []
+         }
+    })
+
     const handleLogout = () => {
         setUserName(null)
-        setModalType(null)
         localStorage.removeItem("userName")
     }
 
@@ -26,6 +37,25 @@ function App() {
 
     const handleLogin = () => {
         setModalType("login")
+    }
+
+    const handleSubmit = (userName: string, password: string) => {
+        if (modalType === "register") {
+            const exsitingUser = users.some(user => user.userName === userName)
+            if (exsitingUser) {
+                 return console.log()
+            }
+
+            const newUser = {
+                userName: userName,
+                password: password
+            }
+
+            setUsers([
+                ...users,
+                newUser
+            ])
+        }
     }
 
     const [cart, setCart] = useState<CartItem[]>(() => {
@@ -40,6 +70,10 @@ function App() {
     useEffect(() => {
         localStorage.setItem("cart", JSON.stringify(cart))
     }, [cart])
+
+    useEffect(() => {
+        localStorage.setItem("users", JSON.stringify(users))
+    }, [users])
 
     const addToCart = (product: Product) => {
 
@@ -97,7 +131,14 @@ function App() {
 
     return (
         <>
-        <p>{modalType}</p>
+        {modalType &&
+            <AuthModal
+                modalType={modalType}
+                onSubmit={handleSubmit}
+                onClose={() => setModalType(null)}
+            />
+            
+            }
         <BrowserRouter>
             <Header
                 userName={userName}
