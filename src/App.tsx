@@ -87,28 +87,34 @@ function App() {
 
     const addToCart = (product: Product) => {
 
-        const existingItem = cart.find(item => item.product.id === product.id)
-
-        if (existingItem) {
-            const smartCart = cart.map(item => (
-                item.product.id === product.id
-                    ? {
-                        ...item,
-                        quantity: item.quantity + 1
-                    }
-                    : item
-            ))
-            setCart(smartCart)
-            
+        if (userName === null) {
+            setModalType("login")
+            return false
         } else {
-            setCart([
-                ...cart,
-                {
-                    product,
-                    quantity: 1
-                }
-            ])
-        }
+            const existingItem = cart.find(item => item.product.id === product.id)
+
+            if (existingItem) {
+                const smartCart = cart.map(item => (
+                    item.product.id === product.id
+                        ? {
+                            ...item,
+                            quantity: item.quantity + 1
+                        }
+                        : item
+                ))
+                setCart(smartCart)
+            
+            } else {
+                setCart([
+                    ...cart,
+                    {
+                        product,
+                        quantity: 1
+                    }
+                ])
+            }
+            }
+        return true
     }
 
     const increaseQuantity = (productId: number) => {
@@ -158,7 +164,12 @@ function App() {
                 />
 
             <Routes>
-                <Route path="/" element={<ProductsPage />} />
+                <Route
+                    path="/" 
+                    element={<ProductsPage
+                        isLoggedIn={userName !== null}
+                        onAuthRequired={handleLogin}
+                    />} />
                 <Route
                     path="/cart"
                     element={<CartPage

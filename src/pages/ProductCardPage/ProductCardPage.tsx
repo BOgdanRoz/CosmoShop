@@ -45,12 +45,15 @@ function ProductCardPage({ addToCart }: ProductCardPageProps) {
                         <button
                             className={styles.button}
                             onClick={() => {
-                                addToCart(product)
-                                setNotification(`${product.name} added to cart!`)
+                                const addedProduct = addToCart(product)
 
-                                setTimeout(() => {
-                                    setNotification("")
-                                }, 3000)
+                                if (addedProduct) {
+                                    setNotification(`${product.name} added to cart!`)
+
+                                    setTimeout(() => {
+                                        setNotification("")
+                                    }, 3000)
+                                }  
                             }}
                             
                         >

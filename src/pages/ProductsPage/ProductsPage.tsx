@@ -1,11 +1,11 @@
-import type { Product } from "../../types/product"
+import type { Product, ProductsPageProps } from "../../types/product"
 import { products } from "../../types/product"
 import ProductCard from "../../components/ProductCard/ProductCard"
 import styles from "./ProductsPage.module.css"
 import { useState } from "react"
 import Filters from "../../components/Filters/Filters"
 
-function ProductsPage() {
+function ProductsPage({ isLoggedIn, onAuthRequired }: ProductsPageProps) {
 
     const [filteredProducts, setFilteredProducts] = useState<Product[]>(products)
 
@@ -21,13 +21,19 @@ function ProductsPage() {
 
     const handleFilterChange = (filteredProducts: Product[]) => {
         setFilteredProducts(filteredProducts)
+        setCurrentPage(1)
     }
 
     return (
         <main className={styles.page}>
             <div className={styles.contentLayout}>
                 <aside className={styles.filters}>
-                    <Filters products={products} onFilterChange={handleFilterChange} />
+                    <Filters
+                        products={products}
+                        onFilterChange={handleFilterChange} 
+                        isLoggedIn={isLoggedIn}
+                        onAuthRequired={onAuthRequired}
+                        />
                 </aside>
 
                 <div className={styles.catalog}>

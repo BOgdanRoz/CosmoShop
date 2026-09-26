@@ -473,7 +473,7 @@ export interface CartItem {
 }
 
 export interface ProductCardPageProps {
-    addToCart: (product: Product) => void
+    addToCart: (product: Product) => boolean
 }
 
 export interface CartPageProps {
@@ -482,7 +482,14 @@ export interface CartPageProps {
     decreaseQuantity: (productId: number) => void
 }
 
+export interface ProductsPageProps {
+    isLoggedIn: boolean
+    onAuthRequired: () => void
+}
+
 export interface FiltersProps {
     products: Product[]
     onFilterChange: (products: Product[]) => void
+    isLoggedIn: boolean
+    onAuthReqired: () => void
 }

@@ -3,7 +3,7 @@ import type { FiltersProps } from "../../types/product"
 import styles from "./Filters.module.css"
 
 
-function Filters({ products, onFilterChange }: FiltersProps) {
+function Filters({ products, onFilterChange, onAuthRequired, isLoggedIn }: FiltersProps) {
 
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
 
@@ -11,6 +11,15 @@ function Filters({ products, onFilterChange }: FiltersProps) {
     const [maxPrice, setMaxPrice] = useState(3900000)
 
     const [searchName, setSearchName] = useState("")
+
+    const requireAuth = () => {
+        if (!isLoggedIn) {
+            onAuthRequired()
+            return false
+        } else {
+            return true
+        }
+    }
 
     const filteredProducts = products.filter(product =>
             (selectedCategories.length === 0 || selectedCategories.includes(product.category))
@@ -29,7 +38,10 @@ function Filters({ products, onFilterChange }: FiltersProps) {
                     <input
                         type="checkbox"
                         checked={selectedCategories.length === 0}
-                        onChange={() => setSelectedCategories([])}   
+                        onChange={() => {
+                            if (!requireAuth()) return
+                            setSelectedCategories([])
+                        }}   
                     />
                     All
                 </label>
@@ -39,6 +51,7 @@ function Filters({ products, onFilterChange }: FiltersProps) {
                         type="checkbox"
                         checked={selectedCategories.includes("Food")}
                         onChange={() => {
+                            if (!requireAuth()) return
                             setSelectedCategories(prev => 
                                 prev.includes("Food")
                                 ? prev.filter(category => category !== "Food")
@@ -54,6 +67,7 @@ function Filters({ products, onFilterChange }: FiltersProps) {
                         type="checkbox"
                         checked={selectedCategories.includes("Vehicle")}
                         onChange={() => {
+                            if (!requireAuth()) return
                             setSelectedCategories(prev => 
                                 prev.includes("Vehicle")
                                 ? prev.filter(category => category !== "Vehicle")
@@ -69,6 +83,7 @@ function Filters({ products, onFilterChange }: FiltersProps) {
                         type="checkbox"
                         checked={selectedCategories.includes("Space Suits")}
                         onChange={() => {
+                            if (!requireAuth()) return
                             setSelectedCategories(prev => 
                                 prev.includes("Space Suits")
                                 ? prev.filter(category => category !== "Space Suits")
@@ -84,6 +99,7 @@ function Filters({ products, onFilterChange }: FiltersProps) {
                         type="checkbox"
                         checked={selectedCategories.includes("Equipment")}
                         onChange={() => {
+                            if (!requireAuth()) return
                             setSelectedCategories(prev => 
                                 prev.includes("Equipment")
                                 ? prev.filter(category => category !== "Equipment")
@@ -101,7 +117,9 @@ function Filters({ products, onFilterChange }: FiltersProps) {
                     min={0}
                     max={3900000}
                     value={minPrice}
-                    onChange={(event) => setMinPrice(Number(event.target.value))}        
+                    onChange={(event) => {
+                        if (!requireAuth()) return
+                        setMinPrice(Number(event.target.value))}}        
                     />
 
                     <input
@@ -110,7 +128,9 @@ function Filters({ products, onFilterChange }: FiltersProps) {
                     min={0}
                     max={3900000}
                     value={maxPrice}
-                    onChange={(event) => setMaxPrice(Number(event.target.value))}        
+                    onChange={(event) => {
+                        if (!requireAuth()) return
+                        setMaxPrice(Number(event.target.value))}}        
                     />
             </div>
             <div>
@@ -118,7 +138,9 @@ function Filters({ products, onFilterChange }: FiltersProps) {
                     type="text"
                     placeholder="Search by name.."
                     value={searchName}
-                    onChange={(event) => setSearchName(event.target.value)}
+                    onChange={(event) => {
+                        if (!requireAuth()) return
+                        setSearchName(event.target.value)}}
                 />
             </div>
         </main>
