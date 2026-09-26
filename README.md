@@ -13,6 +13,8 @@ This is an **educational portfolio project** created to practice frontend develo
 >
 > User accounts, cart data, and order history are stored in the browser's `localStorage`. This is a demonstration implementation and is not secure for real user data.
 
+## Demo [View CosmoShop] (cosmo-shoping-center.vercel.app)
+
 ## ✨ Features
 
 - **Product Catalog** — Browse products in a space-themed store.
@@ -107,3 +109,7 @@ CosmoShop is my first project built with TypeScript. It was an opportunity to ga
 ## 📄 License
 
 This project was created for educational and portfolio purposes.
+
+## 🔗 Repository
+
+[GitHub Repository](https://github.com/BOgdanRoz/CosmoShop)
