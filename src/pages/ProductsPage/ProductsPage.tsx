@@ -51,7 +51,9 @@ function ProductsPage({ isLoggedIn, onAuthRequired }: ProductsPageProps) {
                 <div className={styles.pagination}>
                     {pages.map(page => (
                         <button
+                            className={`${styles.paginationButton} ${currentPage === page ? styles.activePage : ""}`}
                             key={page}
+                            aria-current={currentPage === page ? "page" : undefined}
                             onClick={() =>  {
                                 setCurrentPage(page)
                                 window.scrollTo(0, 0)

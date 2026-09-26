@@ -24,6 +24,11 @@ function AuthModal({ modalType, onClose, onSwitchMode, onSubmit }: AuthModalProp
 
                 <h2 className={styles.title} id="auth-modal-title">{title}</h2>
 
+                <p className={styles.warning} role="note">
+                    Warning: This demo stores account details in your browser&apos;s local storage.
+                    Use test credentials only. Do not enter your real name or password.
+                </p>
+
                 <form
                     className={styles.form}
                     onSubmit={(event) => {

@@ -149,6 +149,10 @@ function App() {
         setCart(smartCart)
     }
 
+    const handleCheckout = () => {
+        setCart([])
+    }
+
     return (
         <>
         {modalType &&
@@ -181,6 +185,7 @@ function App() {
                         cart={cart}
                         increaseQuantity={increaseQuantity}
                         decreaseQuantity={decreaseQuantity}
+                        onCheckout={handleCheckout}
                 />} />
                 <Route path="/products/:id" element={<ProductCardPage addToCart={addToCart} />}/>
             </Routes>

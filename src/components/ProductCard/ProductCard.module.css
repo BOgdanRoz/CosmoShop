@@ -48,10 +48,6 @@
     text-transform: uppercase;
 }
 
-.rating {
-    white-space: nowrap;
-}
-
 .price {
     font-size: 1.15rem;
     font-weight: 700;

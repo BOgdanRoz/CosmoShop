@@ -3,7 +3,7 @@ import { products } from "../../types/product"
 import styles from "./ProductCardPage.module.css"
 import type { ProductCardPageProps } from "../../types/product"
 import { useState } from "react"
-import { FaCartPlus, FaTag } from "react-icons/fa"
+import { FaCartPlus, FaCheckCircle, FaChevronDown, FaListAlt, FaStar, FaTag } from "react-icons/fa"
 
 function ProductCardPage({ addToCart }: ProductCardPageProps) {
 
@@ -37,9 +37,23 @@ function ProductCardPage({ addToCart }: ProductCardPageProps) {
                         <div className={styles.desc}>
                             {product.desc}
                         </div>
+                        <details className={styles.specifications}>
+                            <summary className={styles.specificationsTitle}>
+                                <span><FaListAlt aria-hidden="true" />Specifications</span>
+                                <FaChevronDown className={styles.chevron} aria-hidden="true" />
+                            </summary>
+                            <ul className={styles.specificationsList}>
+                                {product.specifications.map(specification => (
+                                    <li key={specification}>
+                                        <FaCheckCircle aria-hidden="true" />
+                                        <span>{specification}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </details>
                         <div className={styles.info}>
                             <p><FaTag aria-hidden="true" /><span>Category: {product.category}</span></p>
-                            <p>Rating: {product.rating} ★</p>
+                            <p><FaStar aria-hidden="true" /><span>Rating: {product.rating}</span></p>
                         </div>
                     </div>
                     <div className={styles.buttonArea}>

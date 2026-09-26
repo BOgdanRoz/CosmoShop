@@ -3,6 +3,12 @@ import { FaSearch } from "react-icons/fa"
 import type { FiltersProps } from "../../types/product"
 import styles from "./Filters.module.css"
 
+const MAX_PRICE = 3900000
+const formatPrice = (price: number) => price.toLocaleString("en-US")
+const parsePrice = (value: string) => {
+    const digits = value.replace(/\D/g, "")
+    return digits === "" ? Number.NaN : Number(digits)
+}
 
 function Filters({ products, onFilterChange, onAuthRequired, isLoggedIn }: FiltersProps) {
 
@@ -10,6 +16,8 @@ function Filters({ products, onFilterChange, onAuthRequired, isLoggedIn }: Filte
 
     const [minPrice, setMinPrice] = useState(0)
     const [maxPrice, setMaxPrice] = useState(3900000)
+    const [minPriceInput, setMinPriceInput] = useState("0")
+    const [maxPriceInput, setMaxPriceInput] = useState(formatPrice(MAX_PRICE))
 
     const [searchName, setSearchName] = useState("")
 
@@ -36,6 +44,42 @@ function Filters({ products, onFilterChange, onAuthRequired, isLoggedIn }: Filte
                 ? prev.filter(selectedCategory => selectedCategory !== category)
                 : [...prev, category]
         )
+    }
+
+    const updateMinPrice = (value: string) => {
+        const cleanValue = value.replace(/[^\d,]/g, "")
+        setMinPriceInput(cleanValue)
+        if (cleanValue === "") return
+
+        const price = parsePrice(cleanValue)
+        if (Number.isFinite(price)) {
+            setMinPrice(Math.min(Math.max(price, 0), maxPrice))
+        }
+    }
+
+    const updateMaxPrice = (value: string) => {
+        const cleanValue = value.replace(/[^\d,]/g, "")
+        setMaxPriceInput(cleanValue)
+        if (cleanValue === "") return
+
+        const price = parsePrice(cleanValue)
+        if (Number.isFinite(price)) {
+            setMaxPrice(Math.max(Math.min(price, MAX_PRICE), minPrice))
+        }
+    }
+
+    const commitMinPrice = () => {
+        const parsedPrice = parsePrice(minPriceInput)
+        const price = Number.isFinite(parsedPrice) ? Math.min(Math.max(parsedPrice, 0), maxPrice) : minPrice
+        setMinPrice(price)
+        setMinPriceInput(formatPrice(price))
+    }
+
+    const commitMaxPrice = () => {
+        const parsedPrice = parsePrice(maxPriceInput)
+        const price = Number.isFinite(parsedPrice) ? Math.max(Math.min(parsedPrice, MAX_PRICE), minPrice) : maxPrice
+        setMaxPrice(price)
+        setMaxPriceInput(formatPrice(price))
     }
 
     useEffect(() => {
@@ -77,33 +121,67 @@ function Filters({ products, onFilterChange, onAuthRequired, isLoggedIn }: Filte
 
             <div className={styles.priceFilter}>
                 <h3 className={styles.priceTitle}>Price</h3>
-                <div className={styles.priceLabels}>
-                    <span>${minPrice.toLocaleString("en-US")}</span>
-                    <span>${maxPrice.toLocaleString("en-US")}</span>
+                <div className={styles.priceInputs}>
+                    <label className={styles.priceInputGroup}>
+                        <span>$</span>
+                        <input
+                            className={styles.priceInput}
+                            type="text"
+                            inputMode="numeric"
+                            aria-label="Minimum price"
+                            value={minPriceInput}
+                            onChange={(event) => {
+                                if (!requireAuth()) return
+                                updateMinPrice(event.target.value)
+                            }}
+                            onBlur={commitMinPrice}
+                        />
+                    </label>
+                    <label className={styles.priceInputGroup}>
+                        <span>$</span>
+                        <input
+                            className={styles.priceInput}
+                            type="text"
+                            inputMode="numeric"
+                            aria-label="Maximum price"
+                            value={maxPriceInput}
+                            onChange={(event) => {
+                                if (!requireAuth()) return
+                                updateMaxPrice(event.target.value)
+                            }}
+                            onBlur={commitMaxPrice}
+                        />
+                    </label>
                 </div>
                 <div className={styles.priceSlider}>
                     <input
                         className={`${styles.range} ${styles.minRange}`}
                         type="range"
                         min={0}
-                        max={3900000}
+                        max={maxPrice}
                         value={minPrice}
                         aria-label="Minimum price"
                         onChange={(event) => {
                             if (!requireAuth()) return
-                            setMinPrice(Number(event.target.value))}}
+                            const price = Number(event.target.value)
+                            setMinPrice(price)
+                            setMinPriceInput(formatPrice(price))
+                        }}
                     />
 
                     <input
                         className={`${styles.range} ${styles.maxRange}`}
                         type="range"
-                        min={0}
-                        max={3900000}
+                        min={minPrice}
+                        max={MAX_PRICE}
                         value={maxPrice}
                         aria-label="Maximum price"
                         onChange={(event) => {
                             if (!requireAuth()) return
-                            setMaxPrice(Number(event.target.value))}}
+                            const price = Number(event.target.value)
+                            setMaxPrice(price)
+                            setMaxPriceInput(formatPrice(price))
+                        }}
                     />
                 </div>
             </div>

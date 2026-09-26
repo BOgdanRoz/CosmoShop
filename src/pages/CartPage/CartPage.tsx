@@ -1,9 +1,11 @@
 import type { CartPageProps } from "../../types/product"
-import { FaCreditCard, FaMinus, FaPlus, FaShoppingCart } from "react-icons/fa"
+import { useState } from "react"
+import { FaCheckCircle, FaCreditCard, FaMinus, FaPlus, FaShoppingCart } from "react-icons/fa"
 import styles from "./CartPage.module.css"
 
 
-function CartPage ({ cart, increaseQuantity, decreaseQuantity }: CartPageProps) {
+function CartPage ({ cart, increaseQuantity, decreaseQuantity, onCheckout }: CartPageProps) {
+    const [orderPlaced, setOrderPlaced] = useState(false)
 
     const total = cart.reduce((sum, item) => {
         return sum + item.product.price * item.quantity
@@ -12,6 +14,12 @@ function CartPage ({ cart, increaseQuantity, decreaseQuantity }: CartPageProps) 
     if (cart.length === 0) {
         return (
             <main className={styles.emptyPage}>
+                {orderPlaced && (
+                    <div className={styles.orderNotification} role="status">
+                        <FaCheckCircle aria-hidden="true" />
+                        <span>Your order has been placed!</span>
+                    </div>
+                )}
                 <section className={styles.emptyModal} role="status">
                     <FaShoppingCart className={styles.emptyIcon} aria-hidden="true" />
                     <h1 className={styles.emptyTitle}>Your cart is empty</h1>
@@ -78,7 +86,15 @@ function CartPage ({ cart, increaseQuantity, decreaseQuantity }: CartPageProps) 
                     <span>Total</span>
                     <strong>{total.toLocaleString("en-Us")}</strong>
                 </div>
-                <button className={styles.checkoutButton} type="button">
+                <button
+                    className={styles.checkoutButton}
+                    type="button"
+                    onClick={() => {
+                        onCheckout()
+                        setOrderPlaced(true)
+                        window.setTimeout(() => setOrderPlaced(false), 3000)
+                    }}
+                >
                     <FaCreditCard aria-hidden="true" /><span>Checkout</span>
                 </button>
             </aside>
