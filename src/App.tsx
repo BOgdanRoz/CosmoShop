@@ -8,6 +8,26 @@ import CartPage from "./pages/CartPage/CartPage"
 
 function App() {
 
+    const [modalType, setModalType] = useState<"register" | "login" | null>(null)
+
+    const [userName, setUserName] = useState<string | null>(() => {
+        return localStorage.getItem("userName")
+    })
+
+    const handleLogout = () => {
+        setUserName(null)
+        setModalType(null)
+        localStorage.removeItem("userName")
+    }
+
+    const handleRegister = () => {
+        setModalType("register")
+    }
+
+    const handleLogin = () => {
+        setModalType("login")
+    }
+
     const [cart, setCart] = useState<CartItem[]>(() => {
         const savedCart = localStorage.getItem("cart")
         if (savedCart) {
@@ -18,7 +38,7 @@ function App() {
     })
 
     useEffect(() => {
-        return localStorage.setItem("cart", JSON.stringify(cart))
+        localStorage.setItem("cart", JSON.stringify(cart))
     }, [cart])
 
     const addToCart = (product: Product) => {
@@ -77,8 +97,14 @@ function App() {
 
     return (
         <>
+        <p>{modalType}</p>
         <BrowserRouter>
-            <Header />
+            <Header
+                userName={userName}
+                onRegister={handleRegister}
+                onLogin={handleLogin}
+                onLogout={handleLogout}
+                />
 
             <Routes>
                 <Route path="/" element={<ProductsPage />} />
