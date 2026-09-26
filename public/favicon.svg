@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="space" x1="8" y1="5" x2="56" y2="59" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1d2c40" />
+      <stop offset="1" stop-color="#070b12" />
+    </linearGradient>
+    <linearGradient id="planet" x1="15" y1="20" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#d7e8fa" />
+      <stop offset="1" stop-color="#819dbd" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#space)" />
+  <path d="M49.8 21.6a22 22 0 1 0 0 20.8" fill="none" stroke="#718ba9" stroke-width="2.4" stroke-linecap="round" />
+  <circle cx="32" cy="32" r="13.5" fill="url(#planet)" />
+  <path d="M21.8 28.2c4.8 2.2 12.3 2.3 20.3-.4M23.6 36.1c5.1-1.8 11.1-2 16.8-.3" fill="none" stroke="#435b75" stroke-opacity=".68" stroke-width="2.1" stroke-linecap="round" />
+  <circle cx="49.7" cy="18.7" r="4.2" fill="#f2d39a" />
+  <circle cx="13.7" cy="18.5" r="1.2" fill="#eaf2ff" />
+  <circle cx="50.8" cy="47.6" r="1.1" fill="#eaf2ff" />
+</svg>

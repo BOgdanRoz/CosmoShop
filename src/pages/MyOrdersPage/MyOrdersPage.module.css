@@ -114,10 +114,21 @@
 .shopLink:hover { background: rgba(255, 255, 255, 0.13); }
 .shopLink:focus-visible { outline: 2px solid var(--soft); outline-offset: 3px; }
 
-@media (max-width: 640px) {
+@media (max-width: 600px) {
     .page { width: calc(100% - 2rem); padding: 1.75rem 0 3rem; }
     .orderHeader { grid-template-columns: 1fr auto; gap: 0.75rem; padding: 0.9rem; }
     .orderDate { grid-column: 1 / -1; grid-row: 2; font-size: 0.8rem; }
     .orderTotal { grid-column: 2; grid-row: 1; }
     .orderItems { padding: 0.8rem 0.9rem; }
+}
+
+@media (max-width: 380px) {
+    .page { width: calc(100% - 1.5rem); }
+    .orderHeader { padding: 0.75rem; }
+    .orderDate { font-size: 0.74rem; }
+    .orderTotal strong { font-size: 1rem; }
+    .orderItems { padding: 0.7rem 0.75rem; }
+    .productImage { flex-basis: 46px; width: 46px; height: 40px; }
+    .orderItem { gap: 0.6rem; }
+    .itemPrice { font-size: 0.8rem; }
 }
