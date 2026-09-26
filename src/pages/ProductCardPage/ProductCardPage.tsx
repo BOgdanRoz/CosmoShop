@@ -3,6 +3,7 @@ import { products } from "../../types/product"
 import styles from "./ProductCardPage.module.css"
 import type { ProductCardPageProps } from "../../types/product"
 import { useState } from "react"
+import { FaCartPlus, FaTag } from "react-icons/fa"
 
 function ProductCardPage({ addToCart }: ProductCardPageProps) {
 
@@ -37,8 +38,8 @@ function ProductCardPage({ addToCart }: ProductCardPageProps) {
                             {product.desc}
                         </div>
                         <div className={styles.info}>
-                            <p>Category: {product.category}</p>
-                            <p>Rating: {product.rating}</p>
+                            <p><FaTag aria-hidden="true" /><span>Category: {product.category}</span></p>
+                            <p>Rating: {product.rating} ★</p>
                         </div>
                     </div>
                     <div className={styles.buttonArea}>
@@ -57,7 +58,7 @@ function ProductCardPage({ addToCart }: ProductCardPageProps) {
                             }}
                             
                         >
-                            Add to cart</button>
+                            <FaCartPlus aria-hidden="true" /><span>Add to cart</span></button>
                     </div>
                 </div>
                 

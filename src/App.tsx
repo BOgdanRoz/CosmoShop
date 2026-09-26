@@ -56,6 +56,7 @@ function App() {
                 ...users,
                 newUser
             ])
+            setModalType("login")
         } else if (modalType === "login") {
             const exsitingUser = users.find(user => user.userName === userName && user.password === password)
             if (!exsitingUser) {
@@ -155,6 +156,7 @@ function App() {
                 modalType={modalType}
                 onSubmit={handleSubmit}
                 onClose={() => setModalType(null)}
+                onSwitchMode={() => setModalType(modalType === "register" ? "login" : "register")}
             />
             
             }

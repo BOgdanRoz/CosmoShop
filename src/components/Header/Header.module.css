@@ -28,6 +28,9 @@
 }
 
 .link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
     padding: 0.7rem 1rem;
     border: 1px solid var(--line);
     border-radius: 999px;
@@ -38,9 +41,110 @@
     transition: opacity 0.2s ease;
 }
 
+.link svg,
+.authButton svg,
+.userName svg {
+    display: block;
+    flex: 0 0 auto;
+}
+
+.link,
+.authButton,
+.userName {
+    white-space: nowrap;
+}
+
 .link:hover {
     color: var(--text);
     border-color: rgba(255, 255, 255, 0.15);
     background: transparent;
     opacity: 1;
+}
+
+.authSection {
+    display: flex;
+    align-items: center;
+}
+
+.authActions {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+}
+
+.authButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    padding: 0.65rem 1rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.authButton:not(.loginButton):hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    color: var(--text);
+}
+
+.loginButton {
+    border-color: var(--soft);
+    background: var(--soft);
+    color: var(--bg);
+    font-weight: 600;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.loginButton:hover {
+    border-color: rgba(190, 213, 238, 0.8);
+    box-shadow: 0 0 0 2px rgba(190, 213, 238, 0.18);
+}
+
+.userName {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    max-width: 160px;
+    color: var(--text);
+    font-size: 0.9rem;
+}
+
+.userName > span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.userName svg {
+    color: var(--muted);
+}
+
+.authButton:focus-visible {
+    outline: 2px solid rgba(190, 213, 238, 0.8);
+    outline-offset: 3px;
+}
+
+@media (max-width: 640px) {
+    .header {
+        padding: 1rem;
+    }
+
+    .authActions {
+        gap: 0.4rem;
+    }
+
+    .authButton {
+        padding: 0.55rem 0.75rem;
+        font-size: 0.8rem;
+    }
+
+    .userName {
+        max-width: 90px;
+        font-size: 0.8rem;
+    }
 }

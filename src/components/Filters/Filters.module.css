@@ -1,18 +1,131 @@
+.filters {
+    min-height: 100vh;
+    display: flex;
+    margin-top: 100px;
+}
+
+.panel {
+    display: flex;
+    width: 500px;
+    height: fit-content;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    border-left: 1px solid var(--line);
+}
+
+.title {
+    color: var(--text);
+    font-size: 3.5rem;
+    font-weight: 600;
+}
+
+.search {
+    position: relative;
+}
+
+.searchIcon {
+    position: absolute;
+    top: 50%;
+    left: 0.75rem;
+    display: block;
+    width: 0.85rem;
+    height: 0.85rem;
+    color: var(--muted);
+    transform: translateY(-50%);
+}
+
+.searchInput {
+    width: 100%;
+    padding: 0.7rem 0.75rem 0.7rem 2.25rem;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--bg);
+    color: var(--text);
+}
+
+.searchInput::placeholder {
+    color: var(--muted);
+}
+
+.categoryTitle {
+    color: var(--text);
+    font-size: 1.3rem;
+}
+
+.categories {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.category {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.category input {
+    width: 1rem;
+    height: 1rem;
+    margin: 0;
+    accent-color: var(--soft);
+    cursor: pointer;
+}
+
+.category:hover {
+    color: var(--text);
+}
+
+.priceFilter {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+
+.priceTitle {
+    color: var(--text);
+}
+
+.priceLabels {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    color: var(--muted);
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
 .priceSlider {
     position: relative;
-    height: 30px;
+    height: 24px;
     width: 100%;
 }
 
 .range {
     position: absolute;
     width: 100%;
-    top: 0;
+    top: 4px;
     left: 0;
+    z-index: 1;
     margin: 0;
     pointer-events: none;
     appearance: none;
     background: transparent;
+}
+
+.maxRange {
+    z-index: 2;
+}
+
+.range::-webkit-slider-runnable-track {
+    height: 4px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.2);
 }
 
 .range::-webkit-slider-thumb {
@@ -20,7 +133,39 @@
     pointer-events: auto;
     width: 18px;
     height: 18px;
+    margin-top: -7px;
+    border: 2px solid var(--panel-strong);
     border-radius: 50%;
-    background: #64748b;
+    background: var(--soft);
     cursor: pointer;
+}
+
+.range::-moz-range-track {
+    height: 4px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.range::-moz-range-thumb {
+    pointer-events: auto;
+    width: 14px;
+    height: 14px;
+    border: 2px solid var(--panel-strong);
+    border-radius: 50%;
+    background: var(--soft);
+    cursor: pointer;
+}
+
+@media (max-width: 720px) {
+    .panel {
+        min-width: 0;
+        min-height: 0;
+        justify-content: flex-start;
+        gap: 1rem;
+    }
+
+    .categories {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }

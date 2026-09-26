@@ -55,6 +55,40 @@
     color: var(--text);
 }
 
+.invalid {
+    border-color: #e5484d;
+}
+
+.shake {
+    animation: shake 0.35s ease;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-5px);
+    }
+
+    40% {
+        transform: translateX(5px);
+    }
+
+    60% {
+        transform: translateX(-2px);
+    }
+
+    80% {
+        transform: translateX(2px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
 .submitButton {
     padding: 0.8rem;
     border: 0;
@@ -63,4 +97,19 @@
     color: var(--bg);
     cursor: pointer;
     font-weight: 700;
+}
+
+.switchText {
+    margin-top: 1rem;
+    color: var(--muted);
+    text-align: center;
+}
+
+.switchButton {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--soft);
+    cursor: pointer;
+    text-decoration: underline;
 }

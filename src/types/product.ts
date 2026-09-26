@@ -491,5 +491,5 @@ export interface FiltersProps {
     products: Product[]
     onFilterChange: (products: Product[]) => void
     isLoggedIn: boolean
-    onAuthReqired: () => void
+    onAuthRequired: () => void
 }

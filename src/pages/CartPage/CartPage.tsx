@@ -1,4 +1,5 @@
 import type { CartPageProps } from "../../types/product"
+import { FaCreditCard, FaMinus, FaPlus, FaShoppingCart } from "react-icons/fa"
 import styles from "./CartPage.module.css"
 
 
@@ -12,6 +13,7 @@ function CartPage ({ cart, increaseQuantity, decreaseQuantity }: CartPageProps) 
         return (
             <main className={styles.emptyPage}>
                 <section className={styles.emptyModal} role="status">
+                    <FaShoppingCart className={styles.emptyIcon} aria-hidden="true" />
                     <h1 className={styles.emptyTitle}>Your cart is empty</h1>
                     <p className={styles.emptyText}>
                         Add products to your cart to see them here.
@@ -49,7 +51,7 @@ function CartPage ({ cart, increaseQuantity, decreaseQuantity }: CartPageProps) 
                                     onClick={() => decreaseQuantity(item.product.id)}
                                     aria-label={`Decrease ${item.product.name} quantity`}
                                 >
-                                    -
+                                    <FaMinus aria-hidden="true" />
                                 </button>
                                 <span className={styles.quantityValue}>{item.quantity}</span>
                                 <button
@@ -57,7 +59,7 @@ function CartPage ({ cart, increaseQuantity, decreaseQuantity }: CartPageProps) 
                                     onClick={() => increaseQuantity(item.product.id)}
                                     aria-label={`Increase ${item.product.name} quantity`}
                                 >
-                                    +
+                                    <FaPlus aria-hidden="true" />
                                 </button>
                             </div>
                         </div>
@@ -77,7 +79,7 @@ function CartPage ({ cart, increaseQuantity, decreaseQuantity }: CartPageProps) 
                     <strong>{total.toLocaleString("en-Us")}</strong>
                 </div>
                 <button className={styles.checkoutButton} type="button">
-                    Checkout
+                    <FaCreditCard aria-hidden="true" /><span>Checkout</span>
                 </button>
             </aside>
         </div>

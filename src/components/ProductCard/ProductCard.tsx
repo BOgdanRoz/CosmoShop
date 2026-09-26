@@ -11,7 +11,7 @@ function ProductCard({ product }: ProductCardProps) {
                 <h2 className={styles.name}>{product.name}</h2>
                 <div className={styles.meta}>
                     <span>{product.category}</span>
-                    <span>{product.rating} ★</span>
+                    <span className={styles.rating}>{product.rating} ★</span>
                 </div>
                 <p className={styles.price}>${product.price.toLocaleString("en-Us")}</p>
             </div>

@@ -41,6 +41,19 @@
     font-size: 1.5rem;
 }
 
+.info p {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    white-space: nowrap;
+}
+
+.info svg,
+.button svg {
+    display: block;
+    flex: 0 0 auto;
+}
+
 .price {
     font-size: 2rem;
     font-weight: 700;
@@ -48,6 +61,11 @@
 }
 
 .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    white-space: nowrap;
     width: 160px;
     height: 60px;
     padding: 0.9rem 1.5rem;
