@@ -28,6 +28,7 @@ function App() {
 
     const handleLogout = () => {
         setUserName(null)
+        setCart([])
         localStorage.removeItem("userName")
     }
 
@@ -62,6 +63,8 @@ function App() {
             }
 
             setUserName(userName)
+            const savedCart = localStorage.getItem(`cart_${userName}`)
+            setCart(savedCart ? JSON.parse(savedCart) :  [])
             localStorage.setItem("userName", userName)
 
             setModalType(null)
@@ -69,17 +72,17 @@ function App() {
     }
 
     const [cart, setCart] = useState<CartItem[]>(() => {
-        const savedCart = localStorage.getItem("cart")
-        if (savedCart) {
-             return JSON.parse(savedCart)
-        } else {
-            return []
-        }
+        if (userName === null) return []
+
+        const savedCart = localStorage.getItem(`cart_${userName}`)
+        return savedCart ? JSON.parse(savedCart) : []
     })
 
     useEffect(() => {
-        localStorage.setItem("cart", JSON.stringify(cart))
-    }, [cart])
+        if (userName === null) return 
+
+        localStorage.setItem(`cart_${userName}`, JSON.stringify(cart))
+    }, [cart, userName])
 
     useEffect(() => {
         localStorage.setItem("users", JSON.stringify(users))
