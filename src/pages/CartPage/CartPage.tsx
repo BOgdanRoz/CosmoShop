@@ -1,6 +1,7 @@
 import type { CartPageProps } from "../../types/product"
 import { useState } from "react"
 import { FaCheckCircle, FaCreditCard, FaMinus, FaPlus, FaShoppingCart } from "react-icons/fa"
+import { getProductImage } from "../../utils/productImage"
 import styles from "./CartPage.module.css"
 
 
@@ -42,7 +43,11 @@ function CartPage ({ cart, increaseQuantity, decreaseQuantity, onCheckout }: Car
             <section className={styles.items} aria-label="Cart items">
                 {cart.map(item => (
                     <article className={styles.item} key={item.product.id}>
-                        <div className={styles.image} aria-label="Product preview" />
+                        <img
+                            className={styles.image}
+                            src={getProductImage(item.product)}
+                            alt={item.product.name}
+                        />
 
                         <div className={styles.details}>
                             <h2 className={styles.name}>{item.product.name}</h2>

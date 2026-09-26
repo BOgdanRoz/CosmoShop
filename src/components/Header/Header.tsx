@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { FaBoxOpen, FaSignInAlt, FaSignOutAlt, FaShoppingCart, FaUser, FaUserPlus } from "react-icons/fa"
+import { FaReceipt, FaBoxOpen, FaSignInAlt, FaSignOutAlt, FaShoppingCart, FaUser, FaUserPlus } from "react-icons/fa"
 import styles from "./Header.module.css"
 import type { HeaderProps } from "../../types/auth"
 
@@ -11,7 +11,7 @@ function Header({ userName, onLogin, onLogout, onRegister }: HeaderProps) {
             <nav className={styles.nav}>
                 <Link to="/" className={styles.link}><FaBoxOpen aria-hidden="true" /><span>Products</span></Link>
                 <Link to="/cart" className={styles.link}><FaShoppingCart aria-hidden="true" /><span>Cart</span></Link>
-                <Link to="/my-orders" className={styles.link}> <span>My Orders</span></Link>
+                <Link to="/my-orders" className={styles.link}><FaReceipt aria-hidden="true" /> <span>My Orders</span></Link>
             </nav>
 
             <div className={styles.authSection}>

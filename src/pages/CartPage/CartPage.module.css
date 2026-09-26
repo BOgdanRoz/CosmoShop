@@ -168,12 +168,14 @@
 }
 
 .image {
+    display: block;
     flex: 0 0 92px;
     width: 92px;
     height: 92px;
     border: 1px solid var(--line);
     border-radius: 8px;
     background: #14181d;
+    object-fit: cover;
 }
 
 .details {

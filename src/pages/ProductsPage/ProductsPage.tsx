@@ -1,5 +1,5 @@
 import type { Product, ProductsPageProps } from "../../types/product"
-import { products } from "../../types/product"
+import { products } from "../../data/products"
 import ProductCard from "../../components/ProductCard/ProductCard"
 import styles from "./ProductsPage.module.css"
 import { useState } from "react"

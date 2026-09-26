@@ -1,9 +1,10 @@
 import { useParams } from "react-router-dom"
-import { products } from "../../types/product"
+import { products } from "../../data/products"
 import styles from "./ProductCardPage.module.css"
 import type { ProductCardPageProps } from "../../types/product"
 import { useState } from "react"
 import { FaCartPlus, FaCheckCircle, FaChevronDown, FaListAlt, FaStar, FaTag } from "react-icons/fa"
+import { getProductImage } from "../../utils/productImage"
 
 function ProductCardPage({ addToCart }: ProductCardPageProps) {
 
@@ -27,7 +28,7 @@ function ProductCardPage({ addToCart }: ProductCardPageProps) {
         )}
         <main className={styles.page}>
             <div className={styles.card}>
-                <div className={styles.image}></div>
+                <img className={styles.image} src={getProductImage(product)} alt={product.name} />
                 <div className={styles.meta}>
                     <div className={styles.dataArea}>
                         <div>
