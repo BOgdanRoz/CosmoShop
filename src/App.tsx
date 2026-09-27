@@ -46,7 +46,7 @@ function App() {
         if (modalType === "register") {
             const exsitingUser = users.some(user => user.userName === userName)
             if (exsitingUser) {
-                 return console.log("User, is already exist")
+                return "This username is already taken."
             }
 
             const newUser = {
@@ -59,10 +59,14 @@ function App() {
                 newUser
             ])
             setModalType("login")
+            return null
         } else if (modalType === "login") {
-            const exsitingUser = users.find(user => user.userName === userName && user.password === password)
-            if (!exsitingUser) {
-                return console.log("User, not found")
+            const existingUser = users.find(user => user.userName === userName)
+            if (!existingUser) {
+                return "Account not found."
+            }
+            if (existingUser.password !== password) {
+                return "Incorrect password."
             }
 
             setUserName(userName)
@@ -72,6 +76,7 @@ function App() {
 
             setModalType(null)
         }
+        return null
     }
 
     const [cart, setCart] = useState<CartItem[]>(() => {
@@ -178,6 +183,7 @@ function App() {
         <>
         {modalType &&
             <AuthModal
+                key={modalType}
                 modalType={modalType}
                 onSubmit={handleSubmit}
                 onClose={() => setModalType(null)}

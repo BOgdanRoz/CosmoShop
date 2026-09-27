@@ -6,6 +6,7 @@ import styles from "./AuthModal.module.css";
 function AuthModal({ modalType, onClose, onSwitchMode, onSubmit }: AuthModalProps) {
     const [invalidFields, setInvalidFields] = useState({ username: false, password: false });
     const [shakeFields, setShakeFields] = useState(false);
+    const [submitError, setSubmitError] = useState("");
     const title = modalType === "register" ? "Register" : "Login";
 
     return (
@@ -51,7 +52,7 @@ function AuthModal({ modalType, onClose, onSwitchMode, onSubmit }: AuthModalProp
                             return;
                         }
 
-                        onSubmit(userName, password);
+                        setSubmitError(onSubmit(userName, password) ?? "");
                     }}
                 >
                     <label className={styles.field}>
@@ -60,7 +61,9 @@ function AuthModal({ modalType, onClose, onSwitchMode, onSubmit }: AuthModalProp
                             className={`${styles.input} ${invalidFields.username ? styles.invalid : ""} ${invalidFields.username && shakeFields ? styles.shake : ""}`}
                             type="text"
                             name="username"
+                            aria-invalid={invalidFields.username || Boolean(submitError)}
                             onChange={(event) => {
+                                setSubmitError("");
                                 if (event.target.value.trim()) {
                                     setInvalidFields((fields) => ({ ...fields, username: false }));
                                 }
@@ -74,13 +77,21 @@ function AuthModal({ modalType, onClose, onSwitchMode, onSubmit }: AuthModalProp
                             className={`${styles.input} ${invalidFields.password ? styles.invalid : ""} ${invalidFields.password && shakeFields ? styles.shake : ""}`}
                             type="password"
                             name="password"
+                            aria-invalid={invalidFields.password}
                             onChange={(event) => {
+                                setSubmitError("");
                                 if (event.target.value.trim()) {
                                     setInvalidFields((fields) => ({ ...fields, password: false }));
                                 }
                             }}
                         />
                     </label>
+
+                    {submitError && (
+                        <p className={styles.errorMessage} role="alert">
+                            {submitError}
+                        </p>
+                    )}
 
                     <button className={styles.submitButton} type="submit">
                         {title}

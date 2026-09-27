@@ -70,6 +70,17 @@
     border-color: #e5484d;
 }
 
+.errorMessage {
+    margin-top: -0.35rem;
+    padding: 0.7rem 0.75rem;
+    border: 1px solid rgba(229, 72, 77, 0.4);
+    border-radius: 6px;
+    background: rgba(229, 72, 77, 0.1);
+    color: #ff9b9f;
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
 .shake {
     animation: shake 0.35s ease;
 }

@@ -9,7 +9,7 @@ export interface AuthModalProps {
     modalType: "register" | "login"
     onClose: () => void
     onSwitchMode: () => void
-    onSubmit: (userName: string, password: string) => void
+    onSubmit: (userName: string, password: string) => string | null
 }
 
 export interface User {
